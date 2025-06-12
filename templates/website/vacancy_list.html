@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block title %}Vacancies - Imarketing{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">{% if language == 'uz' %}Vakansiyalar{% else %}Вакансии{% endif %}</h1>
+
+{% if vacancies %}
+    <div class="row row-cols-1 row-cols-md-2 g-4">
+        {% for vacancy in vacancies %}
+        <div class="col">
+            <div class="card h-100">
+                {% if vacancy.image %}
+                    <img src="{{ vacancy.image.url }}" class="card-img-top" alt="{{ vacancy.title }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ vacancy.title }}</h5>
+                    <p class="card-text">
+                        {% if language == 'uz' %}
+                            {{ vacancy.short_text_uz }}
+                        {% else %}
+                            {{ vacancy.short_text_ru }}
+                        {% endif %}
+                    </p>
+                    <a href="{% url 'vacancy_detail' vacancy.pk %}?lang={{ language }}" class="btn btn-primary">
+                        {% if language == 'uz' %}Batafsil{% else %}Подробнее{% endif %}
+                    </a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+{% else %}
+    <div class="alert alert-info">
+        {% if language == 'uz' %}
+            Hozirda bo'sh ish o'rinlari yo'q
+        {% else %}
+            В настоящее время нет открытых вакансий
+        {% endif %}
+    </div>
+{% endif %}
+{% endblock %} 

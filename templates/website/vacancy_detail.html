@@ -1,0 +1,81 @@
+{% extends 'base.html' %}
+{% load widget_tweaks %}
+
+{% block title %}{{ vacancy.title }} - Imarketing{% endblock %}
+
+{% block content %}
+<div class="row">
+    <div class="col-md-8">
+        <h1 class="mb-4">{{ vacancy.title }}</h1>
+        
+        {% if vacancy.image %}
+            <img src="{{ vacancy.image.url }}" class="img-fluid rounded mb-4" alt="{{ vacancy.title }}">
+        {% endif %}
+        
+        <div class="vacancy-content">
+            {% if language == 'uz' %}
+                {{ vacancy.full_text_uz|linebreaks }}
+            {% else %}
+                {{ vacancy.full_text_ru|linebreaks }}
+            {% endif %}
+        </div>
+    </div>
+    
+    <div class="col-md-4">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">
+                    {% if language == 'uz' %}
+                        Ariza topshirish
+                    {% else %}
+                        Подать заявку
+                    {% endif %}
+                </h5>
+                
+                <form method="post" enctype="multipart/form-data">
+                    {% csrf_token %}
+                    
+                    {% for field in form %}
+                        <div class="mb-3">
+                            <label for="{{ field.id_for_label }}" class="form-label">
+                                {{ field.label }}
+                            </label>
+                            {% if field.field.widget.input_type == 'file' %}
+                                {{ field|add_class:"form-control" }}
+                            {% else %}
+                                {{ field|add_class:"form-control" }}
+                            {% endif %}
+                            {% if field.help_text %}
+                                <div class="form-text">{{ field.help_text }}</div>
+                            {% endif %}
+                            {% if field.errors %}
+                                <div class="alert alert-danger">
+                                    {{ field.errors }}
+                                </div>
+                            {% endif %}
+                        </div>
+                    {% endfor %}
+                    
+                    <button type="submit" class="btn btn-primary">
+                        {% if language == 'uz' %}
+                            Yuborish
+                        {% else %}
+                            Отправить
+                        {% endif %}
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4">
+    <a href="{% url 'vacancy_list' %}?lang={{ language }}" class="btn btn-outline-primary">
+        {% if language == 'uz' %}
+            ← Barcha vakansiyalar
+        {% else %}
+            ← Все вакансии
+        {% endif %}
+    </a>
+</div>
+{% endblock %} 
