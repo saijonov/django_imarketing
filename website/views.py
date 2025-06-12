@@ -17,22 +17,24 @@ def vacancy_list(request):
 
 def vacancy_detail(request, pk):
     """Display vacancy details and application form"""
+    vacancy = get_object_or_404(Vacancy, pk=pk)
     language = request.GET.get('lang', 'uz')
-    vacancy = get_object_or_404(Vacancy, pk=pk, is_published=True)
     
     if request.method == 'POST':
-        form = ApplicationForm(request.POST)
+        form = ApplicationForm(request.POST, vacancy=vacancy, language=language)
         if form.is_valid():
-            application = form.save(commit=False)
-            application.vacancy = vacancy
-            application.save()
-            return HttpResponseRedirect(reverse('vacancy_list'))
+            form.save()
+            return render(request, 'website/vacancy_detail.html', {
+                'vacancy': vacancy,
+                'form': ApplicationForm(vacancy=vacancy, language=language),
+                'language': language,
+                'success': True
+            })
     else:
-        form = ApplicationForm()
+        form = ApplicationForm(vacancy=vacancy, language=language)
     
-    context = {
+    return render(request, 'website/vacancy_detail.html', {
         'vacancy': vacancy,
         'form': form,
-        'language': language,
-    }
-    return render(request, 'website/vacancy_detail.html', context)
+        'language': language
+    })

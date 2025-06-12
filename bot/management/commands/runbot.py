@@ -26,6 +26,8 @@ from bot.handlers.base import (
     save_feedback,
     show_profile,
     change_language,
+    handle_profile_edit,
+    handle_edit_field,
 )
 from bot.texts import TEXTS
 
@@ -41,7 +43,12 @@ from bot.texts import TEXTS
     MAIN_MENU,
     FEEDBACK_MENU,
     AWAITING_FEEDBACK,
-) = range(10)
+    EDIT_PROFILE,
+    EDIT_NAME,
+    EDIT_LASTNAME,
+    EDIT_PHONE,
+    EDIT_LOCATION,
+) = range(15)
 
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -118,6 +125,21 @@ class Command(BaseCommand):
                 ],
                 AWAITING_FEEDBACK: [
                     MessageHandler(filters.TEXT & ~filters.COMMAND, save_feedback)
+                ],
+                EDIT_PROFILE: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, handle_profile_edit)
+                ],
+                EDIT_NAME: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, handle_edit_field)
+                ],
+                EDIT_LASTNAME: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, handle_edit_field)
+                ],
+                EDIT_PHONE: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, handle_edit_field)
+                ],
+                EDIT_LOCATION: [
+                    MessageHandler(filters.TEXT & ~filters.COMMAND, handle_edit_field)
                 ],
             },
             fallbacks=[
