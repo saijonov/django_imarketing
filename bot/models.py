@@ -5,6 +5,7 @@ class User(models.Model):
     tg_id = models.BigIntegerField(unique=True)
     name = models.CharField(max_length=100)
     lastname = models.CharField(max_length=100)
+    email = models.EmailField(blank=True, null=True)
     gender = models.CharField(
         max_length=10,
         choices=[('male', _('Male')), ('female', _('Female'))]
