@@ -1,6 +1,9 @@
 from telegram import InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton, ReplyKeyboardMarkup
 import urllib.parse
 
+# Define site URL directly
+SITE_URL = 'http://10.0.2.15:8000'
+
 def get_language_keyboard():
     keyboard = [
         [
@@ -49,17 +52,23 @@ def get_profile_edit_keyboard(text_dict):
 
 def get_vacancy_details_button(vacancy_id, text_dict, user_data=None):
     """Create button for vacancy details with user data in URL"""
-    base_url = f"https://imarketing.uz/vacancy/{vacancy_id}"
+    base_url = f"{SITE_URL}/vacancy/{vacancy_id}"
     
     if user_data:
-        # Create query parameters with user data
-        params = {
-            'name': user_data.get('name', ''),
-            'lastname': user_data.get('lastname', ''),
-            'phone': user_data.get('phone', ''),
-            'tg_id': user_data.get('tg_id', ''),
+        # Clean and prepare user data
+        clean_data = {
+            'name': user_data.get('name', '').strip(),
+            'lastname': user_data.get('lastname', '').strip(),
+            'phone': user_data.get('phone', '').strip(),
+            'tg_id': str(user_data.get('tg_id', '')),
+            'lang': user_data.get('language', 'uz')
         }
-        url = f"{base_url}?{urllib.parse.urlencode(params)}"
+        # Only include non-empty values
+        params = {k: v for k, v in clean_data.items() if v}
+        if params:
+            url = f"{base_url}?{urllib.parse.urlencode(params, quote_via=urllib.parse.quote)}"
+        else:
+            url = base_url
     else:
         url = base_url
 

@@ -253,6 +253,13 @@ async def show_vacancies(update: Update, context: ContextTypes.DEFAULT_TYPE):
     language = context.user_data.get('language', 'uz')
     text_dict = TEXTS[language]
     
+    # Ensure we have the user's Telegram ID in the user_data
+    if update.message and update.message.from_user:
+        context.user_data['tg_id'] = update.message.from_user.id
+    
+    # Debug log to see what data we have
+    logging.info(f"User data being passed: {context.user_data}")
+    
     vacancies = await get_vacancies()
     if not vacancies:
         await update.message.reply_text(text_dict['no_vacancies'])
@@ -263,7 +270,7 @@ async def show_vacancies(update: Update, context: ContextTypes.DEFAULT_TYPE):
         await update.message.reply_photo(
             photo=vacancy.image,
             caption=getattr(vacancy, text_field),
-            reply_markup=get_vacancy_details_button(vacancy.id, text_dict)
+            reply_markup=get_vacancy_details_button(vacancy.id, text_dict, context.user_data)
         )
     return MAIN_MENU
 

@@ -1,3 +1,11 @@
+import os
+import django
+
+# Set up Django
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'django_imarketing.settings')
+django.setup()
+
+from telegram import Update
 from telegram.ext import (
     Application,
     CommandHandler,
@@ -41,7 +49,6 @@ from .handlers.base import (
     EDIT_LOCATION,
 )
 from .texts import TEXTS
-import os
 import logging
 
 def create_application():
