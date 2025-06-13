@@ -9,16 +9,16 @@ TEXTS = {
         'contact_required': 'Iltimos, quyidagi "📱 Telefon raqamni ulashish" tugmasini bosing 👇\n\nBu bizga siz bilan bog\'lanish imkonini beradi.',
         
         # Registration
-        'enter_name': 'Yangi ismingizni kiriting:',
-        'enter_lastname': 'Yangi familiyangizni kiriting:',
+        'enter_name': 'Ismingizni kiriting:',
+        'enter_lastname': 'Familiyangizni kiriting:',
         'select_gender': 'Jinsingizni tanlang:',
         'male': '👨 Erkak',
         'female': '👩 Ayol',
         'enter_birthday': 'Tug\'ilgan sanangizni kiriting (DD.MM.YYYY):\n\nMasalan: 01.01.1990',
         'invalid_birthday': 'Noto\'g\'ri sana formati. Iltimos, DD.MM.YYYY formatida kiriting.\n\nMasalan: 01.01.1990',
-        'enter_location': 'Yangi manzilingizni kiriting:',
+        'enter_location': 'Manzilingizni kiriting:',
         'error_message': 'Xatolik yuz berdi. Iltimos, qaytadan urinib ko\'ring yoki yordam uchun murojaat qiling.',
-        'enter_phone': 'Yangi telefon raqamingizni kiriting:',
+        'enter_phone': 'Telefon raqamingizni kiriting:',
         
         # Main menu
         'about': '🏢 Imarketing haqida',
@@ -59,6 +59,12 @@ Manzil: {location}''',
         'edit_phone': 'Telefon raqamni o\'zgartirish 📱',
         'edit_location': 'Manzilni o\'zgartirish 📍',
         'update_success': 'Ma\'lumotlar muvaffaqiyatli yangilandi! ✅',
+        'contact_info': '''📞 Bizning aloqa ma'lumotlarimiz:
+
+📍 Manzil: Toshkent shahri
+📱 Telefon: +998 XX XXX XX XX
+✉️ Email: info@imarketing.uz
+🌐 Website: www.imarketing.uz''',
     },
     
     'ru': {
@@ -71,16 +77,16 @@ Manzil: {location}''',
         'contact_required': 'Пожалуйста, нажмите кнопку "📱 Поделиться номером телефона" ниже 👇\n\nЭто позволит нам связаться с вами.',
         
         # Registration
-        'enter_name': 'Введите новое имя:',
-        'enter_lastname': 'Введите новую фамилию:',
+        'enter_name': 'Введите имя:',
+        'enter_lastname': 'Введите фамилию:',
         'select_gender': 'Выберите ваш пол:',
         'male': '👨 Мужской',
         'female': '👩 Женский',
         'enter_birthday': 'Введите дату рождения (ДД.ММ.ГГГГ):\n\nНапример: 01.01.1990',
         'invalid_birthday': 'Неверный формат даты. Пожалуйста, введите в формате ДД.ММ.ГГГГ.\n\nНапример: 01.01.1990',
-        'enter_location': 'Введите новый адрес:',
+        'enter_location': 'Введите адрес:',
         'error_message': 'Произошла ошибка. Пожалуйста, попробуйте снова или обратитесь за помощью.',
-        'enter_phone': 'Введите новый номер телефона:',
+        'enter_phone': 'Введите номер телефона:',
         
         # Main menu
         'about': '🏢 Об Imarketing',
@@ -121,5 +127,11 @@ Manzil: {location}''',
         'edit_phone': 'Изменить номер телефона 📱',
         'edit_location': 'Изменить адрес 📍',
         'update_success': 'Данные успешно обновлены! ✅',
+        'contact_info': '''📞 Наши контактные данные:
+
+📍 Адрес: г. Ташкент
+📱 Телефон: +998 XX XXX XX XX
+✉️ Email: info@imarketing.uz
+🌐 Website: www.imarketing.uz''',
     }
 } 

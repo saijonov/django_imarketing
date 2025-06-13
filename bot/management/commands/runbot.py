@@ -119,6 +119,10 @@ class Command(BaseCommand):
                         handle_feedback
                     ),
                     MessageHandler(
+                        filters.Regex(f"^({uz_dict['contact']}|{ru_dict['contact']})$"),
+                        handle_feedback
+                    ),
+                    MessageHandler(
                         filters.Regex(f"^({uz_dict['back']}|{ru_dict['back']})$"),
                         handle_feedback
                     ),

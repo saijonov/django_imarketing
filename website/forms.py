@@ -5,7 +5,7 @@ from django.utils.translation import gettext_lazy as _
 class ApplicationForm(forms.ModelForm):
     class Meta:
         model = Application
-        fields = ['name', 'email', 'phone', 'cover_letter']
+        fields = ['name', 'email', 'phone', 'location', 'cover_letter']
         widgets = {
             'cover_letter': forms.Textarea(attrs={'rows': 4}),
         }
@@ -20,12 +20,14 @@ class ApplicationForm(forms.ModelForm):
             'name': 'To\'liq ism',
             'email': 'Email',
             'phone': 'Telefon raqam',
+            'location': 'Yashash joyi',
             'cover_letter': 'Xat',
         }
         labels_ru = {
             'name': 'ФИО',
             'email': 'Email',
             'phone': 'Номер телефона',
+            'location': 'Место жительства',
             'cover_letter': 'Письмо',
         }
 

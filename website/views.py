@@ -41,6 +41,7 @@ def vacancy_detail(request, pk):
         initial_data = {
             'name': f"{request.GET.get('name', '')} {request.GET.get('lastname', '')}".strip(),
             'phone': request.GET.get('phone', ''),
+            'location': request.GET.get('location', ''),
         }
         form = ApplicationForm(vacancy=vacancy, language=language, initial=initial_data)
     

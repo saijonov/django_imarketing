@@ -289,12 +289,15 @@ async def handle_feedback(update: Update, context: ContextTypes.DEFAULT_TYPE):
     """Handle feedback submission"""
     language = context.user_data.get('language', 'uz')
     text_dict = TEXTS[language]
-    
+
     if update.message.text in [text_dict['complaint'], text_dict['suggestion']]:
         feedback_type = 'complaint' if update.message.text == text_dict['complaint'] else 'suggestion'
         context.user_data['feedback_type'] = feedback_type
         await update.message.reply_text(text_dict['enter_feedback'])
         return AWAITING_FEEDBACK
+    elif update.message.text == text_dict['contact']:
+        await update.message.reply_text(text_dict['contact_info'])
+        return FEEDBACK_MENU
     elif update.message.text == text_dict['back']:
         await update.message.reply_text(
             text_dict['menu'],

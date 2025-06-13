@@ -13,10 +13,10 @@ SECRET_KEY = 'your-secret-key-here'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['10.0.2.15', 'localhost', '127.0.0.1']
+ALLOWED_HOSTS = ['172.20.10.5', 'localhost', '127.0.0.1']
 
 # Site URL for bot links (used by the Telegram bot)
-SITE_URL = 'http://10.0.2.15:8000'
+SITE_URL = 'http://172.20.10.5:8000'
 
 # Application definition
 INSTALLED_APPS = [

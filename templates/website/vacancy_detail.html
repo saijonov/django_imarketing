@@ -32,6 +32,16 @@
                     {% endif %}
                 </h5>
                 
+                {% if success %}
+                    <div class="alert alert-success">
+                        {% if language == 'uz' %}
+                            Arizangiz muvaffaqiyatli yuborildi! Tez orada siz bilan bog'lanamiz.
+                        {% else %}
+                            Ваша заявка успешно отправлена! Мы свяжемся с вами в ближайшее время.
+                        {% endif %}
+                    </div>
+                {% endif %}
+                
                 <form method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     

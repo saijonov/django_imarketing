@@ -7,6 +7,7 @@ class Application(models.Model):
     name = models.CharField(_('Ism'), max_length=255)
     email = models.EmailField(_('Email'))
     phone = models.CharField(_('Telefon'), max_length=20)
+    location = models.CharField(_('Yashash joyi'), max_length=255, blank=True, null=True)
     cover_letter = models.TextField(_('Xat'), blank=True)
     answers = models.JSONField(default=dict, blank=True)  # Store answers to custom fields
     created_at = models.DateTimeField(auto_now_add=True)

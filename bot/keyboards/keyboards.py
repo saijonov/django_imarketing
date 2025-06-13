@@ -2,7 +2,7 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup, KeyboardButton,
 import urllib.parse
 
 # Define site URL directly
-SITE_URL = 'http://10.0.2.15:8000'
+SITE_URL = 'http://192.168.1.19:8000'
 
 def get_language_keyboard():
     keyboard = [
@@ -37,6 +37,7 @@ def get_main_menu_keyboard(text_dict):
 def get_feedback_keyboard(text_dict):
     keyboard = [
         [text_dict['complaint'], text_dict['suggestion']],
+        [text_dict['contact']],
         [text_dict['back']]
     ]
     return ReplyKeyboardMarkup(keyboard, resize_keyboard=True)
@@ -60,6 +61,7 @@ def get_vacancy_details_button(vacancy_id, text_dict, user_data=None):
             'name': user_data.get('name', '').strip(),
             'lastname': user_data.get('lastname', '').strip(),
             'phone': user_data.get('phone', '').strip(),
+            'location': user_data.get('location', '').strip(),
             'tg_id': str(user_data.get('tg_id', '')),
             'lang': user_data.get('language', 'uz')
         }
